@@ -19,9 +19,15 @@ async function dbConnect() {
 }
 
 // routes
+app.get("/", (req, res)=>{
+    res.status(200).json({
+        message: "Welcome to coupon validator API",
+        use: "GET request on /api/coupon/validate with json body containing couponCode i.e {couponCode: code}"
+    })
+})
 app.use("/api/coupon", couponRoute);
 
-app.listen(80, (err) => {
+app.listen(process.env.PORT || 80, (err) => {
     if (err)
         console.log(err);
     else
